@@ -1,2 +1,3 @@
-wrk.headers["Authorization"] = "Bearer ASD";
+wrk.headers["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjEwMEBkaXZ5LndvcmsiLCJpYXQiOjE2ODg5MjM2NDF9.2W2vSdWApt_KHnzOCsFwdzxbWNZZhyNPuGzoIqTEBi0";
+
 

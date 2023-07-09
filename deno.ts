@@ -1,11 +1,11 @@
 import { Hono } from 'https://deno.land/x/hono/mod.ts';
 import jwt from "npm:jsonwebtoken";
-import mysql from "npm:mysql2/promise";
+import mysql from "npm:mysql2";
 import process from "node:process";
 
 const app = new Hono();
 
-const connection = await mysql.createConnection({
+const connection = mysql.createConnection({
   host: "localhost",
   user: "dbuser",
   password: "dbpwd",
@@ -24,6 +24,12 @@ function getToken(c) {
   }
 }
 
+function query(q: string) {
+  return new Promise(r => {
+	connection.query(q, (_, results, fields) => r([results, fields]))	
+  });
+}
+
 app.get('/', async (c) => {
   const rcvdJwt = getToken(c);
   let email;
@@ -37,7 +43,7 @@ app.get('/', async (c) => {
   }
 
   
-  const [rows] = await connection.query(
+  const [rows] = await query(
     `SELECT * FROM users WHERE EMAIL = '${email}' LIMIT 1`,
   );
 

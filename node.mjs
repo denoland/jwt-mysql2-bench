@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { serve } from '@hono/node-server'
 import jwt from "jsonwebtoken";
-import mysql from "mysql2/promise";
+import mysql from "mysql2";
 import process from "node:process";
 
 const app = new Hono();
@@ -38,13 +38,18 @@ app.get('/', async (c) => {
   }
 
   
-  const [rows] = await connection.query(
+  const [rows] = await query(
     `SELECT * FROM users WHERE EMAIL = '${email}' LIMIT 1`,
   );
 
   return c.body(rows[0]);
 });
 
+function query(q) {
+  return new Promise(r => {
+	connection.query(q, (_, results, fields) => r([results, fields]))	
+  });
+}
 
 serve({
   fetch: app.fetch,
