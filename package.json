@@ -1,0 +1,17 @@
+{
+  "name": "real-world-suite",
+  "version": "1.0.0",
+  "description": "```sql CREATE USER 'dbuser'@'localhost' IDENTIFIED BY 'dbpwd'; GRANT ALL PRIVILEGES ON *.* TO 'dbuser'@'localhost' WITH GRANT OPTION;",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@hono/node-server": "^1.0.2",
+    "hono": "^3.2.7",
+    "jsonwebtoken": "^9.0.1",
+    "mysql2": "^3.5.0"
+  }
+}
