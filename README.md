@@ -14,3 +14,10 @@ CREATE TABLE users (
   age INT
 );
 ```
+
+After this setup, run the `insert_100k.mjs` script to populate the table.
+
+Standalone benchmarks:
+
+- `koa.mjs` - Koa hello world router. (Deno, Node, Bun)
+- `jsonwebtoken.mjs` - jwt.verify micro-benchmark. (Deno and Node)
